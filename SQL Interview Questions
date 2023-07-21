@@ -1,0 +1,62 @@
+Part - I SQL Interview Questions
+1. Display the dept information from department table. select * from dept; 
+ 
+2. Display the details of all employees. select * from emp; 
+ 
+3. Display the name and job for all employees. select ename, job from emp; 
+ 
+4. Display name and salary for all employees. select ename, sal from emp; 
+ 
+5. Display employee number and total salary for each employee. 
+select empno, sal+comm from emp; 
+ 
+6. Display employee name and annual salary for all employees. 
+select empno, empname, 12*sal+nvl(comm,0) annualsal from emp; 
+ 
+7. Display the names of all employees who are working in department number 10. 
+select ename from emp where deptno=10; 
+ 
+8. Display the names of all employees working as clerks and drawing a salary more than 3000. 
+select ename from emp where job=?CLERK? and sal>3000; 
+ 
+9. Display employee number and names for employees who earn commission. 
+select empno, ename from emp where comm is not null and comm>0; 
+ 
+10. Display names of employees who do not earn any commission. 
+Select empno, ename from emp where comm is null and comm=0; 
+ 
+11. Display the names of employees who are working as clerk, salesman or analyst and drawing a 
+salary more than 3000. 
+select ename from emp where (job=?CLERK? or job=?SALESMAN? or job=?ANALYST?) and 
+sal>3000; (or) 
+select ename from emp where job in(?CLERK?,?SALESMAN?,?ANALYST?) and sal>3000; 
+ 
+12. Display the names of employees who are working in the company for the past 5 years. 
+select ename from emp where sysdate-hiredate>5*365;
+ 
+13. Display the list of employees who have joined the company before 30th June 90 or after 31st dec 90. 
+select * from emp where hiredate between ?30-jun-1990? and ?31-dec-1990?; 
+ 
+14. Display current date. select sysdate from dual; 
+ 
+15. Display the list of users in your database (using log table). select * from dba_users; 
+ 
+16. Display the names of all tables from the current user. select * from tab; 
+ 
+17. Display the name of the current user. show user;
+ 
+18. Display the names of employees working in department number 10 or 20 or 40 or employees 
+working as clerks, salesman or analyst. 
+select ename from emp where deptno in (10,20,40) or job in (?CLERK?,?SALESMAN?,?ANALYST?); 
+ 
+19. Display the names of employees whose name starts with alphabet S. 
+select ename from emp where ename like ?S%?; 
+20. Display employee names for employees whose name ends with alphabet. 
+select ename from emp where ename like ?%S?; 
+ 
+21. Display the names of employees whose names have second alphabet A in their names. 
+select ename from emp where ename like ?_S%?; 
+ 
+22. Display the names of employees whose name is exactly five characters in length. 
+select ename from emp where length(ename)=5; (or) 
+select ename from emp where ename like '_____';
