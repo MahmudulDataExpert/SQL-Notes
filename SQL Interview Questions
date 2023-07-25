@@ -1,17 +1,24 @@
-Part - I SQL Interview Questions
-1. Display the dept information from department table. select * from dept; 
+*** SQL Interview Questions ***
+
+# Part - I 
+
+1. Display the dept information from department table. 
+Solution: Select * From dept; 
  
-2. Display the details of all employees. select * from emp; 
+2. Display the details of all employees from emp table.
+Solution: Select * From emp; 
  
-3. Display the name and job for all employees. select ename, job from emp; 
+3. Display the name and job for all employees. 
+Solution: Select ename, job From emp; 
  
-4. Display name and salary for all employees. select ename, sal from emp; 
+4. Display name and salary for all employees. 
+Solution: Select ename, sal From emp; 
  
 5. Display employee number and total salary for each employee. 
-select empno, sal+comm from emp; 
+Solution: Select empno, sal+comm From emp; 
  
 6. Display employee name and annual salary for all employees. 
-select empno, empname, 12*sal+nvl(comm,0) annualsal from emp; 
+Solution: Select empname, 12*sal+nvl(comm,0) as annualsal From emp; 
  
 7. Display the names of all employees who are working in department number 10. 
 select ename from emp where deptno=10; 
