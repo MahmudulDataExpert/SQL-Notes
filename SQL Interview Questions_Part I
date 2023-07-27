@@ -21,65 +21,59 @@ Solution: Select empno, sal+comm From emp;
 Solution: Select empname, 12*sal+nvl(comm,0) as annualsal From emp; 
  
 7. Display the names of all employees who are working in department number 10. 
-select ename from emp where deptno=10; 
+Solution: Select ename From emp Where deptno=10; 
  
 8. Display the names of all employees working as clerks and drawing a salary more than 3000. 
-select ename from emp where job=?CLERK? and sal>3000; 
+Solution: Select ename From emp Where job=?CLERK? AND sal>3000; 
  
 9. Display employee number and names for employees who earn commission. 
-select empno, ename from emp where comm is not null and comm>0; 
+Solution: Select empno, ename From emp Where comm IS NOT NULL AND comm>0; 
  
 10. Display names of employees who do not earn any commission. 
-Select empno, ename from emp where comm is null and comm=0; 
+Solution: Select empno, ename From emp Where comm IS NULL AND comm=0; 
  
 11. Display the names of employees who are working as clerk, salesman or analyst and drawing a 
 salary more than 3000. 
-select ename from emp where (job=?CLERK? or job=?SALESMAN? or job=?ANALYST?) and 
-sal>3000; (or) 
-select ename from emp where job in(?CLERK?,?SALESMAN?,?ANALYST?) and sal>3000; 
+Solution: Select ename From emp Where job IN(?CLERK?,?SALESMAN?,?ANALYST?) AND sal>3000; 
  
 12. Display the names of employees who are working in the company for the past 5 years. 
-select ename from emp where sysdate-hiredate>5*365;
+Solution: Select ename From emp Where sysdate-hiredate>5*365;
  
 13. Display the list of employees who have joined the company before 30th June 90 or after 31st dec 90. 
-select * from emp where hiredate between ?30-jun-1990? and ?31-dec-1990?; 
+Solution: Select * from emp Where hiredate Between "30-jun-1990" AND "31-dec-1990"; 
  
-14. Display current date. select sysdate from dual; 
+14. Display current date. 
+Solution: Select sysdate From dual; 
  
-15. Display the list of users in your database (using log table). select * from dba_users; 
+15. Display the list of users in your database (using log table). 
+Solution: Select * From dba_users; 
  
-16. Display the names of all tables from the current user. select * from tab; 
- 
-17. Display the name of the current user. show user;
- 
-18. Display the names of employees working in department number 10 or 20 or 40 or employees 
+16. Display the names of employees working in department number 10 or 20 or 40 or employees 
 working as clerks, salesman or analyst. 
-select ename from emp where deptno in (10,20,40) or job in (?CLERK?,?SALESMAN?,?ANALYST?); 
+Solution: Select ename From emp Where deptno IN (10,20,40) OR job IN (?CLERK?,?SALESMAN?,?ANALYST?); 
  
-19. Display the names of employees whose name starts with alphabet S. 
-select ename from emp where ename like ?S%?; 
-20. Display employee names for employees whose name ends with alphabet. 
-select ename from emp where ename like ?%S?; 
- 
-21. Display the names of employees whose names have second alphabet A in their names. 
-select ename from emp where ename like ?_S%?; 
- 
-22. Display the names of employees whose name is exactly five characters in length. 
-select ename from emp where length(ename)=5; (or) 
-select ename from emp where ename like '_____';
+17. Display the names of employees whose name starts with alphabet S. 
+Solution: Select ename From emp Where ename like "S%"; 
 
-23. Display the names of employees who are not working as managers. 
-select * from emp minus (select * from emp where empno in (select mgr from emp)); (or) 
-select * from emp where empno not in (select mgr from emp where mgr is not null); (or) 
-select * from emp e where empno not in (select mgr from emp where e.empno=mgr) 
+18. Display employee names for employees whose name ends with alphabet. 
+Solution: Select ename From emp Where ename LIKE "%S"; 
  
-24. Display the names of employees who are not working as SALESMAN or CLERK or ANALYST. 
-select ename from emp where job not in (?CLERK?,?SALESMAN?,?ANALYST?); 
+19. Display the names of employees whose names have second alphabet A in their names. 
+Solution: Select ename From emp Where ename Like "_S%"; 
  
-25. Display all rows from EMP table. The system should wait after every screen full of information. 
-set pause on; 
+20. Display the names of employees whose name is exactly five characters in length. 
+Solution: Select ename From emp Where Length(ename)=5; 
+(or) 
+          Select ename From emp Where ename Like '_____';
+
+21. Display the names of employees who are not working as managers. 
+Solution: Select * from emp e Where empno NOT IN (Select mgr From emp Where e.empno=mgr) 
  
-26. Display the total number of employees working in the company. select count(*) from emp; 
+22. Display the names of employees who are not working as SALESMAN or CLERK or ANALYST. 
+Solution: Select ename From emp Where job NOT IN ("CLERK","SALESMAN","ANALYST"); 
+ 
+23. Display the total number of employees working in the company. 
+select count(*) from emp; 
  
 27. Display the total salary being paid to all employees. 
 select sum(sal)+sum(nvl(comm,0)) from emp; 
