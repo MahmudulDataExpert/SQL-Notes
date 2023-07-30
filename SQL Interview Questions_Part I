@@ -107,7 +107,8 @@ select ename from emp order by sal desc;
  
 38. Display the details from emp table in order of emp name. 
 select * from emp order by ename; 
- 
+
+
 39. Display empno, ename, deptno, and sal. Sort the output first based on name and within name by 
 deptno and within deptno by Sal; 
 select * from emp order by ename,deptno,sal; 
