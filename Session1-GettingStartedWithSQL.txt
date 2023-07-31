@@ -48,20 +48,17 @@ Create database:
 CREATE DATABASE trendytech;
 
 Drop database:
-
 =================================
 
 drop database trendytech;
 
 
 How do I know which database I am in currently:
-
 ================================================
 
 SELECT database();
 
 Creating Table:
-
 =======================================
 
 CREATE TABLE employee
@@ -73,14 +70,11 @@ salary INT
 
 
 To List tables:
-
 ===============================
 
 show tables;
 
 Structure of Table:
-
-
 =====================================
 
 describe table name;
@@ -88,7 +82,6 @@ describe table name;
 desc tablename;
 
 Drop Table:
-
 ======================================
 
 drop table table name;
