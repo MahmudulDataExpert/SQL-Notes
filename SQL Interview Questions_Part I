@@ -109,15 +109,14 @@ Solution: select ename from emp order by sal desc;
 Solution: select * from emp order by ename; 
 
 36. Display empno, ename, deptno, and sal. Sort the output first based on name and within name by deptno and within deptno by Sal; 
-select * from emp order by ename,deptno,sal; 
+Solution: select empno, ename, deptno, and sal from emp order by ename,deptno,sal; 
 
-37. Display the name of the employee along with their annual salary (Sal * 12). The name of the 
-employee earning highest annual salary should appear first. 
+37. Display the name of the employee along with their annual salary (Sal * 12). The name of the employee earning highest annual salary should appear first. 
 select ename, 12*(sal+nvl(comm,0)) Annual from emp order by 12*(sal+nvl(comm,0)) desc; 
  
 38. Display name, Sal, hra, pf, da, total Sal for each employee. The output should be in the order of 
 total Sal, hra 15% of Sal, da 10% of sal, pf 5% of sal total salary will be (sal*hra*da)-pf. 
-select ename,sal,sal*15/100 HRA, sal*5/100 PF, sal*10/100 DA,sal+sal*15/100-
+Solution: select ename,sal,sal*15/100 HRA, sal*5/100 PF, sal*10/100 DA,sal+sal*15/100-
 sal*5/100+sal*10/100 TOTAL_SALARY from emp 
  
 39. Display dept numbers and total number of employees within each group. 
