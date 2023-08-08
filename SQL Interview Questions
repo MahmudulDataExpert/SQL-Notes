@@ -162,45 +162,43 @@ Solution: SELECT ename FROM emp WHERE sal > (SELECT sal FROM emp WHERE ename = '
 # Part - II
 
 1. Display the names of the employees who earn highest salary in their respective departments. 
-select * from emp e where sal = (select max(sal) from emp where deptno=e.deptno) 
+Solution: SELECT * FROM emp e WHERE sal = (SELECT MAX(sal) FROM emp WHERE deptno=e.deptno)
  
 2. Display the names of employees who earn highest salaries in their respective job groups. 
-select * from emp e where sal in (select max(sal) from emp group by job having e.job=job) 
- 
+Solution: SELECT * FROM emp e WHERE sal in (SELECT MAX(sal) FROM emp GROUP BY job HAVING e.job = job);
+
 3. Display the employee names who are working in accountings dept. 
-select ename from emp where deptno = (select deptno from dept where dname=?ACCOUNTING?); 
+Solution: select ename from emp where deptno = (select deptno from dept where dname=?ACCOUNTING?); 
 (or) 
 select ename from emp where deptno in (select deptno from dept where dname=?ACCOUNTING?); 
  
 4. Display the employee names who are working in Chicago. 
-select ename from emp where deptno = (select deptno from dept where loc=?CHICAGO?); 
+Solution: select ename from emp where deptno = (select deptno from dept where loc=?CHICAGO?); 
  
 5. Display the job groups having total salary greater then the maximum salary for managers. 
-select job, sum(sal) from emp group by job having sum(sal) > 
-(select max(sal) from emp where job='MANAGER'); 
+Solution: SELECT job, SUM(sal) FROM emp GROUP BY job HAVING SUM(sal) > (SELECT MAX(sal) FROM emp WHERE job = "MANAGER");
 
-6. Display the names of employees from department number 10 with salary greater than that of any 
-employee working in other departments. 
-select ename,sal,deptno from emp e where deptno=10 and sal > any(select sal from emp where 
-e.deptno!=deptno); 
+6. Display the names of employees from department number 10 with salary greater than that of any employee working in other departments. 
+Solution: SELECT ename, sal, deptno FROM emp WHERE deptno = 10 and sal > ANY(SELECT sal FROM emp WHERE e.deptno != deptno);
+
+8. Display the names of employees in Upper case. 
+Solution: select upper(ename) from emp; 
  
-7. Display the names of employee from department number 10 with salary greater then that of all 
-employee working in other departments. 
-select ename, sal, deptno from emp e where deptno=10 and sal > any(select sal from emp where 
-e.deptno != deptno); 
+9. Display the names of employees in lower case. 
+Solution: select lower(ename) from emp; 
  
-8. Display the names of employees in Upper case. select upper(ename) from emp; 
+10. Display the name of employees in proper case. 
+Solution: select initcap(ename) from emp; 
  
-9. Display the names of employees in lower case. select lower(ename) from emp; 
+11. Find out the length of your name using appropriate function. 
+Solution: select length("Mahmudul") from dual; 
  
-10. Display the name of employees in proper case. select initcap(ename) from emp; 
- 
-11. Find out the length of your name using appropriate function. select length(?India?) from dual; 
- 
-12. Display the length of all employees? names. select sum(length(ename)) from emp; 
+12. Display the length of all employees? 
+Solution: select sum(length(ename)) from emp; 
  
 13. Display the name of the employee concatenate with EMP no. 
-select ename||empno from emp; (or) select concat(ename,empno) from emp; 
+Solution: select ename||empno from emp; 
+         (or) select concat(ename,empno) from emp; 
  
 14. Use appropriate function and extract 3 characters starting from 2 characters from the following 
 string ?Oracle? i.e. the output should be ?rac?. 
