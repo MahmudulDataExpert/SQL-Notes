@@ -200,61 +200,52 @@ Solution: select sum(length(ename)) from emp;
 Solution: select ename||empno from emp; 
          (or) select concat(ename,empno) from emp; 
  
-14. Use appropriate function and extract 3 characters starting from 2 characters from the following 
-string ?Oracle? i.e. the output should be ?rac?. 
-select substr(?oracle?,2,3) from dual; 
+14. Use appropriate function and extract 3 characters starting from 2 characters from the following string 'Oracle' i.e. the output should be 'rac'. 
+Solution: SELECT substr("Oracle", 2, 3) FROM dual;
  
-15. Find the first occurrence of character a from the following string ?computer maintenance 
-corporation?. 
-select instr(?computer maintenance corporation?,?a?,1,1) from dual; 
+15. Find the first occurrence of character a from the following string 'computer maintenance corporation'. 
+Solution: select instr('computer maintenance corporation','a',1,1) from dual; 
  
-16. Replace every occurrence of alphabet A with B in the string Allen?s (user translate function). 
-select replace('Allens','A','b') from dual; 
+16. Replace every occurrence of alphabet A with B in the string 'Allens' (user translate function). 
+Solution: SELECT REPLACE('Allens', 'A', 'B') FROM dual;
  
-17. Display the information from EMP table. Wherever job ?manager? is found it should be displayed as 
-boss(replace function). 
-select empno, ename, replace(job, 'MANAGER', 'Boss') JOB from emp; 
+17. Display the information from EMP table. Wherever job ?manager? is found it should be displayed as boss. 
+Solution: SELECT empno, ename, REPLACE(job, 'MANAGER', "Boss') as Job from emp;
  
-18. Display empno, ename, deptno from EMP table. Instead of display department numbers display the 
-related department name (use decode function). 
-select e.empno, e.ename, d.dname from emp e,dept d where e.deptno = d.deptno;
+18. Display empno, ename, deptno from EMP table. Instead of display department numbers display the related department name (use decode function). 
+Solution: select e.empno, e.ename, d.dname from emp e,dept d where e.deptno = d.deptno;
 
 19. Display your age in days. 
-select round(sysdate-to_date('15-aug-1947')) from dual; 
+Solution: select round(sysdate-to_date('15-aug-1947')) from dual; 
  
 20. Display your age in months. 
-select floor(months_between(sysdate,'15-aug-1947')) "age in months" from dual; 
+Solution: select floor(months_between(sysdate,'15-aug-1947')) "age in months" from dual; 
  
 21. Display current date as 15th august Friday nineteen forty seven. 
-select to_char(sysdate,'ddth month day year') from dual; 
+Solution: select to_char(sysdate,'ddth month day year') from dual; 
  
-22. Display the following output for each row from EMP table as ?scott has joined the company on 
-Wednesday 13th august nineteen ninety?. 
-select ename||' has joined the company on '||to_char(hiredate,'day ddth month year') from emp; 
+22. Display the following output for each row from EMP table as ?scott has joined the company on Wednesday 13th august nineteen ninety?. 
+Solution: select ename||' has joined the company on '||to_char(hiredate,'day ddth month year') from emp; 
  
 23. Find the date of nearest Saturday after current day. 
-select next_day(sysdate, 'SATURDAY') from dual; 
+Solution: select next_day(sysdate, 'SATURDAY') from dual; 
  
 24. Display current time. 
-select to_char(sysdate,'hh:mi:ss') Time from dual; 
+Solution: select to_char(sysdate,'hh:mi:ss') Time from dual; 
  
 25. Display the date three months before the current date. 
-select add_months(sysdate,-3) from dual; 
+Solution: select add_months(sysdate,-3) from dual; 
 
 26. Display the common jobs from department number 10 and 20. 
-select job from emp where deptno=10 and job in(select job from emp where deptno=20); 
-(or) 
-select job from emp where deptno=10 intersect select job from emp where deptno=20; 
+Solution: select job from emp where deptno=10 and job in(select job from emp where deptno=20); 
  
 27. Display the jobs found in department number 10 and 20 eliminate duplicate jobs. 
-select distinct(job) from emp where deptno=10 and job in(select job from emp where deptno=20); 
-(or) 
-select job from emp where deptno=10 intersect select job from emp where deptno=20; 
- 
+Solution: select distinct(job) from emp where deptno=10 and job in(select job from emp where deptno=20); 
+
 28. Display the jobs which are unique to dept no 10. 
-select job from emp where deptno=10 minus select job from emp where deptno!=10; 
+Solution: select job from emp where deptno=10 minus select job from emp where deptno != 10; 
 (or) 
-select job from emp where deptno = 10 and job not in (select job from emp where deptno<>10); 
+select job from emp where deptno = 10 and job not in (select job from emp where deptno <> 10); 
  
 29. Display the details of those who do not have any person working under them. 
 select empno from emp where empno not in (select mgr from emp where mgr is not null); 
