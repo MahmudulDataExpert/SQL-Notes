@@ -248,54 +248,47 @@ Solution: select job from emp where deptno=10 minus select job from emp where de
 select job from emp where deptno = 10 and job not in (select job from emp where deptno <> 10); 
  
 29. Display the details of those who do not have any person working under them. 
-select empno from emp where empno not in (select mgr from emp where mgr is not null); 
+Solution: select empno from emp where empno not in (select mgr from emp where mgr is not null); 
  
 30. Display the details of employees who are in sales dept and grade is 3. 
-select * from emp where sal>=(select losal from salgrade where grade=3) and sal<=(select hisal 
+Solution: select * from emp where sal>=(select losal from salgrade where grade=3) and sal<=(select hisal 
 from salgrade where grade=3) and deptno=(select deptno from dept where dname='SALES'); 
  
 31. Display those who are not managers and who are managers any one. 
-select * from emp where empno in(select mgr from emp) union 
+Solution: 
+select * from emp where empno in(select mgr from emp) 
+union 
 select * from emp where empno not in(select mgr from emp where mgr is not null); 
  
 32. Display those employees whose name contains not less than 4 chars. 
-Select * from emp where length(ename)>4; 
+Solution: Select * from emp where length(ename)>4; 
  
 33. Display those departments whose name start with ?S? while location name end with ?O?. 
-select * from dept where dname like 'S%' and loc like '%O'; 
+Solution: select * from dept where dname like 'S%' and loc like '%O'; 
  
 34. Display those employees whose manager name is JONES. 
-select * from emp where mgr=(select empno from emp where ename='JONES'); 
+Solution: select * from emp where mgr=(select empno from emp where ename='JONES'); 
  
 35. Display those employees whose salary is more than 3000 after giving 20% increment. 
-select * from emp where sal*120/100 > 3000; (or) 
-select * from emp where sal+sal*20/100 > 3000; 
- 
-36. Display all employees with there dept name. 
-select ename, dname from emp e, dept d where e.deptno = d.deptno; 
+Solution: select * from emp where sal+sal*20/100 > 3000; 
  
 37. Display ename who are working in sales dept. 
-select empno, ename from emp where 
-deptno=(select deptno from dept where dname='SALES'); 
+Solution: select empno, ename from emp where deptno=(select deptno from dept where dname='SALES'); 
  
-38. Display employee name, deptname, salary and comm. for those Sal in between 2000 to 5000 while 
-location is Chicago. 
-select empno,ename,deptno from emp where deptno=(select deptno from dept where 
-loc='CHICAGO') and sal between 2000 and 5000; 
+38. Display employee name, deptname, salary and comm. for those Sal in between 2000 to 5000 while location is Chicago. 
+Solution: select empno,ename,deptno from emp where deptno=(select deptno from dept where loc='CHICAGO') and sal between 2000 and 5000; 
 
 39. Display those employees whose salary greater than his manager salary. 
-select * from emp e where sal>(select sal from emp where empno=e.mgr); 
+Solution: select * from emp e where sal>(select sal from emp where empno=e.mgr); 
  
 40. Display those employees who are working in the same dept where his manager is working. 
-select * from emp e where deptno = (select deptno from emp where empno=e.mgr); 
+Solution: select * from emp e where deptno = (select deptno from emp where empno=e.mgr); 
  
 41. Display those employees who are not working under any manger. 
-select * from emp where mgr is null or empno=mgr; 
+Solution: select * from emp where mgr is null or empno=mgr; 
  
-42. Display grade and employees name for the dept no 10 or 30 but grade is not 4, while joined the 
-company before 31-dec-82. 
-select empno,ename,sal,deptno,hiredate,grade from emp e,salgrade s where e.sal>=s.losal and 
-e.sal<=s.hisal and deptno in(10,30) and grade<>4 and hiredate<'01-dec-1981';
+42. Display grade and employees name for the dept no 10 or 30 but grade is not 4, while joined the company before 31-dec-82. 
+select empno,ename,sal,deptno,hiredate,grade from emp e,salgrade s where e.sal>=s.losal and e.sal<=s.hisal and deptno in(10,30) and grade<>4 and hiredate<'01-dec-1981';
 
 43. Update the salary of each employee by 10% increments that are not eligible for commission. 
 update emp set sal=sal+(sal*10/100) where comm is null; 
