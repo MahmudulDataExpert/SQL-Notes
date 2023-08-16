@@ -288,7 +288,10 @@ Solution: select * from emp e where deptno = (select deptno from emp where empno
 Solution: select * from emp where mgr is null or empno=mgr; 
  
 42. Display grade and employees name for the dept no 10 or 30 but grade is not 4, while joined the company before 31-dec-82. 
-select empno,ename,sal,deptno,hiredate,grade from emp e,salgrade s where e.sal>=s.losal and e.sal<=s.hisal and deptno in(10,30) and grade<>4 and hiredate<'01-dec-1981';
+Solution: 
+select ename, grade 
+  from emp e,salgrade s 
+where e.sal>=s.losal and e.sal<=s.hisal and deptno in(10,30) and grade != 4 and hiredate<'31-dec-1982';
 
 43. Update the salary of each employee by 10% increments that are not eligible for commission. 
 update emp set sal=sal+(sal*10/100) where comm is null; 
