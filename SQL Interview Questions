@@ -294,33 +294,26 @@ select ename, grade
 where e.sal>=s.losal and e.sal<=s.hisal and deptno in(10,30) and grade != 4 and hiredate<'31-dec-1982';
 
 43. Update the salary of each employee by 10% increments that are not eligible for commission. 
-update emp set sal=sal+(sal*10/100) where comm is null; 
+Solution: update emp set sal=sal+(sal*10/100) where comm is null; 
  
-44. Delete those employees who joined the company before 31-dec-82 while there dept location is 
-?NEW YORK? or ?CHICAGO?. 
-delete from emp where hiredate<'31-dec-1982' and deptno in 
-(select deptno from dept where loc in('NEW YORK','CHICAGO')); 
+44. Delete those employees who joined the company before 31-dec-82 while there dept location is "NEW YORK" or "CHICAGO". 
+Solution: DELETE from emp where hiredate<'31-dec-1982' and deptno in (select deptno from dept where loc in('NEW YORK','CHICAGO')); 
  
 45. Display employee name, job, deptname, location for all who are working as managers. 
-select ename,job,dname,loc from emp e, dept d where e.deptno=d.deptno and empno in (select mgr 
-from emp); 
+Solution: select ename,job,dname,loc from emp e, dept d where e.deptno=d.deptno and empno in (select mgr from emp); 
  
 46. Display those employees whose manager names is Jones, and also display there manager name. 
-select e.empno, e.ename, m.ename MANAGER from emp e, emp m 
-where e.mgr=m.empno and m.ename='JONES'; 
+Solution: select e.empno, e.ename, m.ename MANAGER from emp e, emp m where e.mgr=m.empno and m.ename='JONES'; 
  
 47. Display name and salary of ford if his Sal is equal to high Sal of his grade. 
-select ename,sal from emp e where ename='FORD' and sal=(select hisal from salgrade where 
-grade=(select grade from salgrade where e.sal>=losal and e.sal<=hisal)); 
+Solution: select ename,sal from emp e where ename='FORD' and sal=(select hisal from salgrade where grade=(select grade from salgrade where e.sal>=losal and e.sal<=hisal)); 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Part - III
 1. Display employee name, his job, his dept name, his manager name, his grade and make out of an 
 under department wise. 
 break on deptno; 
-select d.deptno, e.ename, e.job, d.dname, m.ename, s.grade from 
-emp e, emp m, dept d, salgrade s where e.deptno=d.deptno and e.sal between s.losal and s.hisal 
-and e.mgr=m.empno order by e.deptno; 
+select d.deptno, e.ename, e.job, d.dname, m.ename, s.grade from emp e, emp m, dept d, salgrade s where e.deptno=d.deptno and e.sal between s.losal and s.hisal and e.mgr=m.empno order by e.deptno; 
  
 2. List out all the employees name, job, and salary grade and department name for every one in the 
 company except ?CLERK?. Sort on salary display the highest salary. 
