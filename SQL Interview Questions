@@ -310,52 +310,35 @@ Solution: select ename,sal from emp e where ename='FORD' and sal=(select hisal f
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Part - III
-1. Display employee name, his job, his dept name, his manager name, his grade and make out of an 
-under department wise. 
-break on deptno; 
-select d.deptno, e.ename, e.job, d.dname, m.ename, s.grade from emp e, emp m, dept d, salgrade s where e.deptno=d.deptno and e.sal between s.losal and s.hisal and e.mgr=m.empno order by e.deptno; 
  
-2. List out all the employees name, job, and salary grade and department name for every one in the 
-company except ?CLERK?. Sort on salary display the highest salary. 
-select empno, ename, sal, dname, grade from emp e, dept d, salgrade s where e.deptno=d.deptno 
-and e.sal between s.losal and s.hisal and e.job<>'CLERK' order by sal; 
- 
-3. Display employee name, his job and his manager. Display also employees who are without 
-manager. 
-select e.ename, e.job, m.ename Manager from emp e,emp m where e.mgr=m.empno union select 
-ename,job,'no manager' from emp where mgr is null; 
+3. Display employee name, his job and his manager. Display also employees who are without manager. 
+Solution: select e.ename, e.job, m.ename Manager from emp e,emp m where e.mgr=m.empno union select ename,job,'no manager' from emp where mgr is null; 
  
 4. Find out the top 5 earner of company. 
-select * from emp e where 5>(select count(*) from emp where sal>e.sal) order by sal desc; 
+Solution: select * from emp e where 5>(select count(*) from emp where sal>e.sal) order by sal desc; 
  
 5. Display the name of those employees who are getting highest salary. 
-select empno,ename,sal from emp where sal=(select max(sal) from emp); 
+Solution: select empno,ename,sal from emp where sal=(select max(sal) from emp); 
  
 6. Display those employees whose salary is equal to average of maximum and minimum. 
-select * from emp where sal=(select (max(sal)+min(sal))/2 from emp); 
+Solution: select * from emp where sal=(select (max(sal)+min(sal))/2 from emp); 
  
 7. Display count of employees in each department where count greater than 3. 
-select deptno, count(*) from emp group by deptno having count(*)>3; 
+Solution: select deptno, count(*) from emp group by deptno having count(*)>3; 
  
 8. Display dname where at least 3 are working and display only dname. 
-select dname from dept where deptno in 
-(select deptno from emp group by deptno having count(*)>3); 
+Solution: select dname from dept where deptno in (select deptno from emp group by deptno having count(*)>3); 
  
 9. Display name of those managers name whose salary is more than average salary of company. 
-select ename, sal from emp where empno in(select mgr from emp) and sal > (select avg(sal) from 
-emp); 
+Solution: select ename, sal from emp where empno in(select mgr from emp) and sal > (select avg(sal) from emp); 
  
 10. Display those managers name whose salary is more than an average salary of his employees. 
-select ename, sal from emp e where empno in(select mgr from emp) and e.sal>(select avg(sal) 
-from emp where mgr=e.empno); 
+Solution: select ename, sal from emp e where empno in(select mgr from emp) and e.sal>(select avg(sal) from emp where mgr=e.empno); 
  
-11. Display employee name, Sal, comm and net pay for those employees whose net pay are greater
-than or equal to any other employee salary of the company? 
-select ename, sal, comm, sal+nvl(comm,0) netPay from emp where sal+nvl(comm.,0)>=any(select 
-sal from emp); 
+11. Display employee name, Sal, comm and net pay for those employees whose net pay are greaterthan or equal to any other employee salary of the company? 
+Solution: select ename, sal, comm, sal+nvl(comm,0) netPay from emp where sal+nvl(comm.,0)>=any(select sal from emp); 
  
-12. Display those employees whose salary is less than his manager but more than salary of any other 
-managers. 
+12. Display those employees whose salary is less than his manager but more than salary of any other managers. 
 select * from emp e where sal<(select sal from emp where empno = e.mgr) and sal>any(select sal 
 from emp where empno!=e.mgr); 
  
